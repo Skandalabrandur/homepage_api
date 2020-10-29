@@ -20,8 +20,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Ok just give me the env
-      run: env
     - name: Restart the ruby api service
       run: systemctl --user restart rubyapi.service
       env:
