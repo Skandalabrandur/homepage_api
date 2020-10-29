@@ -24,3 +24,5 @@ jobs:
       run: env
     - name: Restart the ruby api service
       run: systemctl --user restart rubyapi.service
+      env:
+        DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus
