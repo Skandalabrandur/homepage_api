@@ -1,5 +1,8 @@
 require 'sinatra'
+require 'sinatra/cors'
 require 'json'
+
+set :allow_origin, "http://kaffi.life http://kaffi.coffee"
 
 before do
     content_type :json
