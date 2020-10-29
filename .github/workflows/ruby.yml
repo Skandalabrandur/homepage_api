@@ -20,6 +20,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Restart the ruby api service
+    - name: What user is the runner running?
       run: echo $USER
+    - name: Restart the ruby api service
       run: systemctl --user restart rubyapi.service
