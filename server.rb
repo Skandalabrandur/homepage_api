@@ -81,7 +81,7 @@ get '/rhymes/:word/?' do
             words[row[4]] += [row[0]] unless row[0] == word
         end
 
-        words["Hálfrím"] = true unless words.empty?
+        words["Hálfrím"] = !words.empty?
     end
 
     if howm == 2 && words.empty?
@@ -94,7 +94,7 @@ get '/rhymes/:word/?' do
             words[row[4]] += [row[0]] unless row[0] == word
         end
 
-        words["Hálfrím"] = true unless words.empty?
+        words["Hálfrím"] = !words.empty?
 
     end
 
