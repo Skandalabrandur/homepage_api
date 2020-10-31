@@ -66,7 +66,6 @@ get '/rhymes/:word/?' do
 
 
     words = Hash.new { Array.new }
-    words["Hálfrím"] = false
 
     rs.each do |row|
         words[row[4]] += [row[0]] unless row[0] == word
@@ -96,7 +95,6 @@ get '/rhymes/:word/?' do
         end
 
         words["Hálfrím"] = !words.empty?
-
     end
 
     unless words.empty?
