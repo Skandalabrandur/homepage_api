@@ -1,4 +1,4 @@
-$serhljodar = ['a', 'á', 'e', 'é', 'i', 'í', 'o', 'ó', 'u', 'ú', 'y', 'ý', 'æ', 'ö', 'E', 'Y', 'A', 'J', 'I', 'Í']
+$serhljodar = ['a', 'á', 'e', 'é', 'i', 'í', 'o', 'ó', 'u', 'ú', 'y', 'ý', 'æ', 'ö', 'E', 'Y', 'A', 'I', 'Í']
 
 #Finds the index of the nth vowel from the back
 #backwards_vowel_index
@@ -17,8 +17,7 @@ def count_syllables(word)
     sword.gsub!('au', 'A')
     sword.gsub!('ei', 'I')
     sword.gsub!('ey', 'Y')
-    sword.gsub!('je', 'J')
-    sword.gsub!('é', 'E')
+    sword.gsub!('é', 'je')
     sword.chars.each do |c|
         count += 1 if $serhljodar.include?(c)
     end
@@ -46,11 +45,11 @@ def rhyme_root(word, atkv)
 end
 
 def find_rhyme(word, atkv)
-    worde = UnicodeUtils.downcase(line.chomp)
+    worde = word.chomp.downcase
     root = rhyme_root(worde, atkv)
     results = []
 
-    File.open("dingo.txt", "r").each_line do |line|
+    File.open("dictionary.txt", "r").each_line do |line|
         if rhyme_root(line.chomp, atkv) == root
             results.push(line)
         end
@@ -59,15 +58,22 @@ def find_rhyme(word, atkv)
     puts "Fann rímorð:"
 
     results.each do |res|
-        puts "#{res}" if count_syllables(res) == 2
+        puts "#{res}" if count_syllables(res) == atkv
     end
 
 end
 
 def create_data_instructions
     x = File.open("instructions.txt", "a")
-    File.open("dingo.txt", "r").each_line do |line|
-        word = UnicodeUtils.downcase(line.chomp)
+    x.write("CREATE TABLE rhymes (
+        word TEXT PRIMARY KEY,
+        root_one TEXT,
+        root_two TEXT,
+        root_three TEXT,
+        syllables INTEGER
+    );")
+    File.open("dictionary.txt", "r").each_line do |line|
+        word = line.chomp.downcase
         syllables = count_syllables(word)
         root_one = rhyme_root(word, 1)
         root_two = rhyme_root(word, 2)
@@ -80,5 +86,5 @@ def create_data_instructions
     x.close
 end
 
-create_data_instructions
-#find_rhyme("Hljóðlátur", 2)
+#create_data_instructions
+#find_rhyme("haraldur", 3)
