@@ -4,7 +4,7 @@ require 'sqlite3'
 require 'json'
 require './lib'
 
-set :allow_origin, "http://kaffi.life http://kaffi.coffee"
+set :allow_origin, "*"
 
 $alpha  = ("a".."z").to_a + ["á", "é", "í", "ó", "ú", "æ", "ö", "þ", "ð", "ý"]
 db = SQLite3::Database.open "rhymes.db"
