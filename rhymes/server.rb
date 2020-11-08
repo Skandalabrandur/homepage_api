@@ -87,6 +87,11 @@ get '/rhymes/:word/?' do
         words["Hálfrím"] = !words.empty?
     end
 
+    # Ugly legacy fix, yes. I know
+    if words["Hálfrím"] == false then
+        words.delete("Hálfrím")
+    end
+
     unless words.empty?
         words.to_json
     else
