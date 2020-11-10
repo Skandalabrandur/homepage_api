@@ -2,7 +2,7 @@ require_relative './poem_generator.rb'
 require 'json'
 
 source = File.open('./shared/hugi_smasogur.txt').read
-markov = MarkovChains::Generator.new(source, 2)
+markov = MarkovChains::Generator.new(source, 1)
 
 get '/poems/poem/?' do
     return JSON.unparse(generate_poem(markov, 7))
