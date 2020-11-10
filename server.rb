@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/cors'
 load './rhymes/server.rb'
 load './anagrams/server.rb'
+load './poems/server.rb'
 
 set :allow_origin, "*"
 
@@ -10,7 +11,7 @@ before do
 end
 
 get '/?' do
-    return "kurte.is API"
+    return 'kurte.is API'
 end
 
 
