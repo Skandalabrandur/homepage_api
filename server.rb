@@ -5,6 +5,7 @@ load './anagrams/server.rb'
 load './poems/server.rb'
 
 set :allow_origin, "*"
+set :environment, :production
 
 before do
     content_type :json
