@@ -62,5 +62,10 @@ def generate_poem(markov, syllables)
             end
         end
     end
+
+    # References causing memory leak?
+    h = nil
+    GC.start
+
     return poem
 end
