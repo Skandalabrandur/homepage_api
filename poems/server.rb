@@ -8,6 +8,10 @@ get '/poems/poem/?' do
     return JSON.unparse(generate_poem(markov, 7))
 end
 
+get '/poems/haiku/?' do
+    return JSON.unparse(generate_haiku(markov))
+end
+
 get '/poems/poem/:syllables/?' do
     syllables = params[:syllables].to_i
     if syllables < 4 || syllables > 20

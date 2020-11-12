@@ -29,6 +29,29 @@ def different_endings?(hcollection)
     return endings.length > 1
 end
 
+def generate_haiku(markov)
+    haiku = []
+
+    found = 0
+    until found == 3
+        sentence  = markov.get_sentences(1)[0]
+        syllables = count_syllables(sentence.downcase)
+
+        if found == 0 || found == 2
+            if syllables == 5
+                haiku.push(sentence)
+                found += 1
+            end
+        elsif found == 1
+            if syllables == 7
+                haiku.push(sentence)
+                found += 1
+            end
+        end
+    end
+    return haiku
+end
+
 def generate_poem(markov, syllables)
     h = Hash.new{[]}
     
@@ -62,10 +85,5 @@ def generate_poem(markov, syllables)
             end
         end
     end
-
-    # References causing memory leak?
-    h = nil
-    GC.start
-
     return poem
 end
